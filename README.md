@@ -6,7 +6,7 @@ Git 有三种状态，已提交（committed）、已修改（modified）和已�
 
 ## git文件生命周期图
 
-![image-20191229104544176](image\image-20191228152121575.png)
+![gitfile](./image/gitfile.png)
 ## git 初始设置以及查看和帮助命令
 
 ```shell
@@ -322,6 +322,27 @@ $ git checkout -b testing
 $ git checkout master
 Switched to branch 'master'
 $ git merge testing
+```
+
+## 分支变基
+
+变基的原理是首先找到这两个分支（即当前分支 experiment、变基操作的目标基底分支 master）的最近共同祖 先 C2，然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件，然后将当前分支指向目标基底 C3, 最后以此将之前另存为临时文件的修改依序应用。
+
+```shell
+$ git checkout experiment
+$ git rebase master
+First, rewinding head to replay your work on top of it...
+Applying: added staged command
+```
+
+![gitfile](./image/rebase.png)
+
+```shell
+# 将server中的修改变基到master上
+$ git rebase master server
+
+# 取出client分支，找出处于client分支和server分支的共同祖先之后的修改，然后把它们在master分支上重放一遍
+$ git rebase --onto master server client
 ```
 
 ##  删除分支
