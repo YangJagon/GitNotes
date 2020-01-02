@@ -43,6 +43,27 @@ $ git clone https://github.com/libgit2/libgit2
 $ git clone https://github.com/libgit2/libgit2 mylibgit
 ```
 
+## 配置GitHub的ssh密钥
+
+默认情况下，用户的 SSH 密钥存储在其 ~/.ssh 目录下。 进入该目录并列出其中内容，你便可以快速确认自己是否已拥有密钥。如若没有，可以使用 sh-keygen 命令生成一个密钥：
+
+```shell
+$ ssh-keygen 
+Generating public/private rsa key pair. 
+Enter file in which to save the key (/home/schacon/.ssh/id_rsa): 
+Created directory '/home/schacon/.ssh'. 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/schacon/.ssh/id_rsa. 
+Your public key has been saved in /home/schacon/.ssh/id_rsa.pub. 
+The key fingerprint is:
+d0:82:24:8e:d7:f1:bb:9b:33:53:96:93:49:da:9b:e3 schacon@mylaptop.local
+```
+
+首先 ssh-keygen 会确认密钥的存储位置（默认是 .ssh/id_rsa），然后它会要求你输入两次密钥口令。如果你不想在使用密钥时输入口令，将其留空即可。
+
+最后只需进入github账户，进入账户 SSH keys 页面，点击“Add an SSH key”按钮，给你的公钥起一个名字，将你的`~/.ssh/id_rsa.pub`（或者自定义的其它名字）公钥文件的内容粘贴到文本区，然后点击`‘Add key’'即可。
+
 ## 操作git仓库命令
 
 ```shell
